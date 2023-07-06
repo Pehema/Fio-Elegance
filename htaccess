@@ -1,0 +1,21 @@
+RewriteEngine on
+
+# REDIRECIONAR O USUARIO PARA O HTTPS
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://fioelegance.mowecode.com/$1 [R,L]
+
+# REMOVER A EXTENSÃO .PHP
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php
+
+# Não listar diretorios
+Options -Indexes
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Defina o pacote “ea-php81” como a linguagem padrão de programação “PHP”.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
